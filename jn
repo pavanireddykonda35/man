@@ -1,0 +1,14 @@
+node{
+    stage('build now') {
+ git 'https://github.com/pavanireddykonda35/man.git'
+    }
+    stage('build mvn') {
+sh 'mvn package'
+    }
+    stage('test result') {
+    junit 'spring-petclinc-web/target/surefire-reports/*.xml'
+    }
+    stage( 'archifacts') {
+        archiveArtifacts 'gameoflife-web/target/*.war'
+    }
+}
